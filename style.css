@@ -1,49 +1,37 @@
 /* Global Styles */
 :root {
-    /* Brand Palette - Intensified */
-    --champagne-beige: #FAF3E0;
-    /* Fresher, brighter base */
-    --sand-gold: #FFD27D;
-    /* More vibrant gold */
-    --burgundy: #8B1A33;
-    /* Richer burgundy */
-    --dark-maroon: #6D0D1D;
-    --deep-wine: #3B010B;
-
-    /* NEW: Deep Wine Card Theme Override */
-    --bg-card: var(--deep-wine);
-    /* Replacing White with Deep Wine */
-    --bg-body: var(--champagne-beige);
-    /* Keep body light for contrast */
-    --bg-alt: rgba(139, 26, 51, 0.05);
-    /* Subtle texture */
+    /* Brand Palette - Clean Luxury Textile */
+    --champagne-beige: #F6EBDD; /* Warm Cream */
+    --sand-gold: #E7C66B; /* Soft Gold Accent */
+    --burgundy: #6B001B; /* Primary Maroon */
+    --dark-maroon: #4A0012; /* Deep Maroon */
+    --deep-wine: #4A0012; /* Deep Maroon */
 
     /* Functional Mappings */
+    --bg-card: var(--deep-wine);
+    --bg-body: var(--champagne-beige);
+    --bg-alt: rgba(107, 0, 27, 0.03); /* Extremely subtle maroon tint */
+
     --primary: var(--burgundy);
     --primary-dark: var(--dark-maroon);
-    /* Page Headings (on Light) */
     --accent: var(--sand-gold);
 
     /* Text Colors - Increased Contrast */
-    --text-page: #1A0307;
-    /* Deeper dark */
-    /* Light text for Wine Cards */
-    --text-card-main: #FFF8E7;
-    /* Creamier white */
+    --text-page: #3A2A22; /* Elegant Brown Text */
+    --text-card-main: #F6EBDD; /* Cream Text on dark cards */
     --text-card-head: var(--sand-gold);
-    /* Gold headings for Wine Cards */
-    --text-card-sub: rgba(255, 248, 231, 0.85);
-    /* Muted cream */
+    --text-card-sub: rgba(246, 235, 221, 0.85);
 
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    --shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    /* Deeper shadows */
-    --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.45);
+    --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Clean solid shadows instead of glows */
+    --shadow: 0 4px 15px rgba(74, 0, 18, 0.08);
+    --shadow-hover: 0 6px 20px rgba(74, 0, 18, 0.12);
 
-    --gradient-primary: linear-gradient(135deg, var(--burgundy) 0%, var(--deep-wine) 100%);
-    --gradient-gold: linear-gradient(135deg, #FFD27D 0%, #E5C585 100%);
-    --gradient-hero: linear-gradient(180deg, rgba(250, 243, 224, 0) 0%, rgba(242, 217, 160, 0.2) 100%);
+    --gradient-primary: var(--burgundy); /* Solid instead of gradient */
+    --gradient-gold: var(--sand-gold); /* Solid instead of gradient */
+    --gradient-hero: none;
 }
 
 * {
@@ -53,10 +41,42 @@
     font-family: 'Inter', sans-serif;
 }
 
+
 body {
     line-height: 1.7;
     color: var(--text-page);
     background-color: var(--bg-body);
+    /* Layered textile-weave texture */
+    background-image:
+        /* Fine horizontal weft threads */
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(107, 0, 27, 0.018) 3px,
+            rgba(107, 0, 27, 0.018) 3.5px
+        ),
+        /* Fine vertical warp threads */
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 3px,
+            rgba(107, 0, 27, 0.018) 3px,
+            rgba(107, 0, 27, 0.018) 3.5px
+        ),
+        /* Thread intersection accents - gold tint */
+        radial-gradient(
+            circle,
+            rgba(231, 198, 107, 0.035) 0.6px,
+            transparent 0.6px
+        ),
+        /* Subtle textile motif dots */
+        radial-gradient(
+            circle,
+            rgba(107, 0, 27, 0.025) 1px,
+            transparent 1px
+        );
+    background-size: 4px 4px, 4px 4px, 10px 10px, 22px 22px;
 }
 
 a {
@@ -75,9 +95,9 @@ ul {
 
 /* Header & Navigation */
 header {
-    background: var(--bg-card);
+    background: var(--dark-maroon);
     /* Deep Wine */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(74, 0, 18, 0.2);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -108,35 +128,23 @@ header {
     align-items: center;
 }
 
-.nav-links a {
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: var(--text-card-main);
-    /* Light text on Wine */
-    position: relative;
-    padding-bottom: 5px;
-    white-space: nowrap;
-}
+/* Replaced by global nav rules */
 
 .nav-links a::after {
     content: '';
     position: absolute;
-    width: 100%;
+    width: 0%;
     height: 2px;
     bottom: 0;
     left: 0;
     background-color: var(--sand-gold);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: scaleX(0);
-    transform-origin: right;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left;
 }
 
-.nav-links a:hover {
-    color: var(--sand-gold);
-}
+/* Replaced by global nav hover rules */
 
 .nav-links a:hover::after {
-    transform: scaleX(1);
     transform-origin: left;
 }
 
@@ -149,7 +157,7 @@ header {
 }
 
 .hamburger.active {
-    transform: rotate(90deg);
+    
 }
 
 /* Hero Section - Traditional Ikat-Inspired Gradient Pattern */
@@ -158,69 +166,22 @@ header {
     align-items: center;
     justify-content: center;
     gap: 5rem;
-    /* Brining content and image closer */
     padding: 3.5rem 5%;
-    /* Reduced padding */
-
-    /* Base: Brighter, Warmer Champagne Beige */
-    background-color: #FFFDF7;
-    /* Fresh, vibrant base */
-
-    /* Ikat-style jagged pattern with a warmer gradient overlay */
+    background-color: var(--bg-body);
+    /* Textile-weave texture */
     background-image:
-        /* Warm Overlay for depth and vibrance */
-        linear-gradient(180deg, rgba(255, 253, 247, 0.4) 0%, rgba(255, 210, 125, 0.15) 100%),
-
-        /* Soft vignettes for depth */
-        radial-gradient(circle at 50% 50%, transparent 40%, rgba(139, 26, 51, 0.08) 100%),
-
-        /* Vertical Ikat Blur lines - slightly more intense */
-        linear-gradient(90deg,
-            rgba(139, 26, 51, 0.07) 0%,
-            transparent 10%,
-            rgba(139, 26, 51, 0.07) 20%,
-            transparent 30%,
-            rgba(139, 26, 51, 0.1) 50%,
-            transparent 70%,
-            rgba(139, 26, 51, 0.07) 90%),
-
-        /* Horizontal Weave Texture */
-        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 210, 125, 0.4) 3px, rgba(255, 210, 125, 0.4) 4px);
-
-    background-size: 100% 100%, 100% 100%, 200% 100%, 100% 8px;
-    /* Stretch the Ikat pattern horizontally */
-    min-height: 80vh;
-    /* Slightly more height for airiness */
-    position: relative;
-    overflow: hidden;
-    box-shadow: inset 0 -120px 120px -120px rgba(139, 26, 51, 0.15);
-}
-
-/* Subtle Indian Block Print Motif Overlay for Hero */
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Abstract Geometric Block Print (Diamond/Buta suggestion) */
-    background-image:
-        radial-gradient(var(--sand-gold) 1.5px, transparent 1.5px),
-        radial-gradient(var(--burgundy) 1px, transparent 1px);
-    background-size: 40px 40px;
-    /* Spacing for the motif */
-    background-position: 0 0, 20px 20px;
-    opacity: 0.15;
-    /* Keep it very subtle */
-    pointer-events: none;
+        repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(107, 0, 27, 0.018) 3px, rgba(107, 0, 27, 0.018) 3.5px),
+        repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(107, 0, 27, 0.018) 3px, rgba(107, 0, 27, 0.018) 3.5px),
+        radial-gradient(circle, rgba(231, 198, 107, 0.035) 0.6px, transparent 0.6px),
+        radial-gradient(circle, rgba(107, 0, 27, 0.025) 1px, transparent 1px);
+    background-size: 4px 4px, 4px 4px, 10px 10px, 22px 22px;
+    opacity: 1;
 }
 
 .hero-content {
     max-width: 650px;
     z-index: 2;
     position: relative;
-    /* optional: add a backdrop filter for better readability if needed, though opacity is low */
 }
 
 /* Hero Image Container - Modern Semi-Circle Pop-out */
@@ -235,13 +196,7 @@ header {
     /* Modern Semi-circle Frame */
     border-radius: 160px 160px 0 0;
     border: 6px solid var(--burgundy);
-    /* Even bolder */
-    box-shadow:
-        0 25px 60px rgba(59, 1, 11, 0.4),
-        0 0 0 15px rgba(255, 210, 125, 0.25),
-        /* Stronger Radiant Glow */
-        0 0 30px rgba(255, 210, 125, 0.4);
-    /* Inner soft glow focus */
+    box-shadow: 0 25px 50px rgba(74, 0, 18, 0.2);
 
     display: flex;
     align-items: flex-end;
@@ -255,18 +210,18 @@ header {
 @keyframes zoomInLoad {
     from {
         opacity: 0;
-        transform: scale(0.9) translateY(10px);
+        
     }
 
     to {
         opacity: 1;
-        transform: scale(1) translateY(0);
+        
     }
 }
 
 .hero-image-container:hover {
-    transform: scale(1.02) translateY(-5px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    
+    box-shadow: 0 25px 50px rgba(74, 0, 18, 0.3);
 }
 
 /* Image styling */
@@ -275,25 +230,25 @@ header {
     height: 100%;
     object-fit: cover;
     object-position: top;
-    transition: var(--transition-slow);
+    transition: transform 0.4s ease;
 }
 
 .hero-image-container:hover .hero-profile-img {
-    transform: scale(1.08) translateY(-5px);
+    transform: scale(1.04);
 }
 
 /* Optional floating animation */
 @keyframes float {
     0% {
-        transform: translateY(0px);
+        
     }
 
     50% {
-        transform: translateY(-10px);
+        
     }
 
     100% {
-        transform: translateY(0px);
+        
     }
 }
 
@@ -319,8 +274,8 @@ header {
     display: block;
     letter-spacing: 1px;
     /* More prominent tracking */
-    text-transform: uppercase;
-    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+    text-
+    text-shadow: none;
     /* Subtle lift */
 }
 
@@ -332,7 +287,7 @@ header {
     line-height: 1.1;
     font-weight: 900;
     /* Stronger text shadow for maximum punch */
-    text-shadow: 0 4px 12px rgba(139, 26, 51, 0.2), 0 0 30px rgba(255, 210, 125, 0.3);
+    text-shadow: none;
 }
 
 .hero-content .role {
@@ -353,12 +308,10 @@ header {
     margin-bottom: 2.5rem;
     color: var(--text-card-main);
     max-width: 500px;
-    background: rgba(59, 1, 11, 0.8);
-    /* Semi-transparent deep wine backdrop */
-    padding: 1rem;
-    border-radius: 8px;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(242, 217, 160, 0.1);
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(231, 198, 107, 0.2);
 }
 
 .cta-buttons {
@@ -369,12 +322,12 @@ header {
 /* Buttons */
 .btn {
     padding: 0.9rem 2rem;
-    border-radius: 6px;
+    border-radius: 24px;
     font-weight: 600;
     cursor: pointer;
     border: 2px solid transparent;
     transition: var(--transition);
-    text-transform: uppercase;
+    text-
     font-size: 0.9rem;
     letter-spacing: 0.5px;
 }
@@ -382,25 +335,25 @@ header {
 .btn.primary {
     background: var(--burgundy);
     color: #FFF;
-    box-shadow: 0 6px 20px rgba(139, 26, 51, 0.3);
+    box-shadow: 0 6px 15px rgba(74, 0, 18, 0.2);
     font-weight: 800;
-    transform: perspective(1px) translateZ(0);
+    
     /* Anti-aliasing hack */
 }
 
 .btn.primary:hover {
     background: var(--sand-gold);
     color: var(--deep-wine);
-    transform: translateY(-5px) scale(1.08);
+    
     /* More active movement */
-    box-shadow: 0 12px 30px rgba(255, 210, 125, 0.5);
+    box-shadow: var(--shadow-hover);
     /* Stronger gold glow */
 }
 
 .btn.secondary {
     border: 2px solid var(--burgundy);
     color: var(--burgundy);
-    background: rgba(139, 26, 51, 0.03);
+    background: rgba(231, 198, 107, 0.05);
     /* Subtle active feel */
     font-weight: 800;
 }
@@ -408,15 +361,24 @@ header {
 .btn.secondary:hover {
     background: var(--burgundy);
     color: #FFF;
-    transform: translateY(-5px) scale(1.08);
-    box-shadow: 0 12px 30px rgba(139, 26, 51, 0.4);
+    
+    box-shadow: var(--shadow-hover);
 }
 
 /* Section Common */
+/* Handloom Section Framing */
 .section {
     padding: 6rem 5%;
     position: relative;
+    /* Textile-weave texture on every section */
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(107, 0, 27, 0.018) 3px, rgba(107, 0, 27, 0.018) 3.5px),
+        repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(107, 0, 27, 0.018) 3px, rgba(107, 0, 27, 0.018) 3.5px),
+        radial-gradient(circle, rgba(231, 198, 107, 0.035) 0.6px, transparent 0.6px),
+        radial-gradient(circle, rgba(107, 0, 27, 0.025) 1px, transparent 1px);
+    background-size: 4px 4px, 4px 4px, 10px 10px, 22px 22px;
 }
+
 
 /* Clean Minimal Section Divider */
 .section::after {
@@ -424,9 +386,7 @@ header {
     position: absolute;
     bottom: 0;
     left: 10%;
-    /* Center the line slightly */
     width: 80%;
-    /* Don't span full width for elegance */
     height: 1px;
     background: var(--burgundy);
     opacity: 0.15;
@@ -435,27 +395,18 @@ header {
 /* Alternating Section Backgrounds - Subtle Texture */
 .section:nth-child(even) {
     background-color: var(--champagne-beige);
-    /* Base */
 }
 
 .section:nth-child(odd) {
-    /* Slightly darker/Warmer for contrast */
-    background-color: rgba(242, 217, 160, 0.15);
+    background-color: rgba(231, 198, 107, 0.15);
 }
 
 /* Highlighted 'bg-light' sections (like Skills/Experience) get the Sand Gold Texture */
 .section.bg-light {
-    background-color: #F9F2E0;
-    /* A light mix of Champagne and Sand Gold */
-    /* Curved Pattern - Abstract Paisley Swirls */
-    background-image:
-        radial-gradient(circle at 100% 50%, transparent 20%, rgba(242, 217, 160, 0.4) 21%, rgba(242, 217, 160, 0.4) 34%, transparent 35%, transparent),
-        radial-gradient(circle at 0% 50%, transparent 20%, rgba(242, 217, 160, 0.4) 21%, rgba(242, 217, 160, 0.4) 34%, transparent 35%, transparent);
-    background-size: 60px 60px;
-    /* Fine texture */
-    background-attachment: fixed;
-    border-top: 1px solid rgba(117, 22, 45, 0.05);
-    border-bottom: 1px solid rgba(117, 22, 45, 0.05);
+    background-color: var(--bg-body);
+    
+    border-top: 1px solid rgba(107, 0, 27, 0.05);
+    border-bottom: 1px solid rgba(107, 0, 27, 0.05);
 }
 
 .container {
@@ -503,7 +454,7 @@ header {
     background: var(--bg-card);
     /* Deep Wine */
     padding: 3rem;
-    border-radius: 15px;
+    border-radius: 28px;
     box-shadow: var(--shadow);
     border-left: 5px solid var(--sand-gold);
 
@@ -512,13 +463,13 @@ header {
     gap: 3rem;
     align-items: center;
     transition: var(--transition-slow);
-    border: 1px solid rgba(139, 26, 51, 0.1);
+    border: 1px solid rgba(231, 198, 107, 0.1);
     background: rgba(255, 248, 231, 0.5);
     /* Soft light backdrop for contrast */
 }
 
 .about-content:hover {
-    transform: translateY(-5px);
+    
     box-shadow: var(--shadow-hover);
 }
 
@@ -543,25 +494,25 @@ header {
     background: var(--bg-card);
     /* Deep Wine */
     padding: 2.5rem;
-    border-radius: 12px;
+    border-radius: 24px;
     box-shadow: var(--shadow);
     transition: var(--transition);
-    border: 1px solid rgba(242, 217, 160, 0.1);
+    border: 1px solid rgba(231, 198, 107, 0.1);
     /* Subtle gold border */
 }
 
 .skill-category:hover {
-    transform: translateY(-8px);
+    
     box-shadow: var(--shadow-hover);
     border-color: var(--sand-gold);
-    background: linear-gradient(to bottom right, var(--deep-wine), #4e020e);
+    background: var(--deep-wine);
     /* Slight hover shift */
 }
 
 .skill-category h3 {
     color: var(--text-card-head);
     /* Gold */
-    border-bottom: 1px solid rgba(242, 217, 160, 0.2);
+    border-bottom: 1px solid rgba(231, 198, 107, 0.2);
 }
 
 .skill-category h3 i {
@@ -578,21 +529,21 @@ header {
     background: var(--bg-card);
     /* Deep Wine */
     padding: 2.5rem;
-    border-radius: 12px;
+    border-radius: 24px;
     box-shadow: var(--shadow);
     transition: var(--transition);
     position: relative;
     border-top: 4px solid var(--sand-gold);
     /* Changed from Burgundy to Gold for contrast */
-    border-color: rgba(242, 217, 160, 0.1);
+    border-color: rgba(231, 198, 107, 0.1);
 }
 
 /* Updated premium hover for project cards */
 .project-card:hover {
-    transform: translateY(-8px);
+    
     box-shadow: var(--shadow-hover);
     border-top-color: var(--champagne-beige);
-    background: linear-gradient(to bottom, var(--deep-wine), #4e020e);
+    background: var(--deep-wine);
     /* Darker shift */
 }
 
@@ -608,10 +559,10 @@ header {
 }
 
 .tag {
-    background: rgba(242, 217, 160, 0.15);
+    background: rgba(231, 198, 107, 0.15);
     /* Light Gold tint */
     color: var(--sand-gold);
-    border: 1px solid rgba(242, 217, 160, 0.3);
+    border: 1px solid rgba(231, 198, 107, 0.3);
 }
 
 .project-card p {
@@ -638,7 +589,7 @@ header {
     object-fit: cover;
     object-position: top center;
     /* Focus on face */
-    border-radius: 15px;
+    border-radius: 28px;
     box-shadow: var(--shadow);
     border: 4px solid var(--sand-gold);
     /* Gold frame effect */
@@ -648,7 +599,7 @@ header {
 .hero-profile-img {
     width: 100%;
     height: 100%;
-    border-radius: 12px;
+    border-radius: 24px;
     display: block;
     object-fit: cover;
     object-position: center 20%;
@@ -694,17 +645,17 @@ header {
 .skill-category {
     background: var(--bg-card);
     padding: 2.5rem;
-    border-radius: 12px;
+    border-radius: 24px;
     box-shadow: var(--shadow);
     transition: var(--transition);
-    border: 1px solid rgba(242, 217, 160, 0.3);
+    border: 1px solid rgba(231, 198, 107, 0.3);
 }
 
 .skill-category:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+    
+    box-shadow: 0 20px 45px rgba(74, 0, 18, 0.5);
     border-color: var(--sand-gold);
-    background: linear-gradient(135deg, var(--deep-wine), #8B1A33);
+    background: var(--dark-maroon);
     /* Vibrant burgundy shift */
 }
 
@@ -716,7 +667,7 @@ header {
     align-items: center;
     gap: 0.8rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(242, 217, 160, 0.1);
+    border-bottom: 1px solid rgba(231, 198, 107, 0.1);
 }
 
 .skill-category h3 i {
@@ -762,23 +713,23 @@ header {
 .project-card {
     background: var(--bg-card);
     padding: 2.5rem;
-    border-radius: 12px;
+    border-radius: 24px;
     box-shadow: var(--shadow);
     transition: var(--transition);
     position: relative;
     border-top: 4px solid var(--burgundy);
     /* Ensure border transition works */
-    border-color: rgba(117, 22, 45, 0.1);
+    border-color: rgba(231, 198, 107, 0.1);
 }
 
 /* Updated premium hover for project cards */
 .project-card:hover {
-    transform: translateY(-10px) scale(1.01);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    
+    box-shadow: var(--shadow-hover);
     /* Deeper, more energetic shadow */
     border-top-color: var(--sand-gold);
     /* Accentuate top border */
-    background: linear-gradient(135deg, var(--deep-wine), #8B1A33);
+    background: var(--dark-maroon);
 }
 
 .project-header {
@@ -796,13 +747,13 @@ header {
 }
 
 .tag {
-    background: rgba(242, 217, 160, 0.15);
+    background: rgba(231, 198, 107, 0.15);
     color: var(--sand-gold);
     padding: 0.4rem 1rem;
     border-radius: 30px;
     font-size: 0.8rem;
     font-weight: 700;
-    border: 1px solid rgba(242, 217, 160, 0.3);
+    border: 1px solid rgba(231, 198, 107, 0.3);
 }
 
 .project-card p {
@@ -836,9 +787,9 @@ header {
 }
 
 .assignment-skills .tag {
-    background: rgba(139, 26, 51, 0.2);
+    background: rgba(231, 198, 107, 0.2);
     /* Slightly darker burgundy background */
-    border-color: rgba(255, 210, 125, 0.2);
+    border-color: rgba(231, 198, 107, 0.2);
     font-size: 0.75rem;
     padding: 0.3rem 0.8rem;
 }
@@ -853,8 +804,8 @@ header {
 
 .certificate-card {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(242, 217, 160, 0.2);
-    border-radius: 8px;
+    border: 1px solid rgba(231, 198, 107, 0.2);
+    border-radius: 16px;
     padding: 0.8rem;
     width: 100%;
     max-width: 350px;
@@ -863,9 +814,9 @@ header {
 }
 
 .certificate-card:hover {
-    transform: translateY(-5px) scale(1.02);
+    
     border-color: var(--sand-gold);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-hover);
 }
 
 .cert-img {
@@ -877,7 +828,7 @@ header {
 }
 
 .certificate-card:hover .cert-img {
-    transform: scale(1.05);
+    
 }
 
 .cert-caption {
@@ -892,22 +843,22 @@ header {
 .project-image-upload-placeholder {
     height: 160px;
     background: rgba(255, 255, 255, 0.05);
-    border: 2px dashed rgba(242, 217, 160, 0.3);
+    border: 2px dashed rgba(231, 198, 107, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: var(--sand-gold);
     margin-top: 2rem;
-    border-radius: 8px;
+    border-radius: 16px;
     cursor: pointer;
     transition: var(--transition);
 }
 
 .project-image-upload-placeholder:hover {
-    background: rgba(242, 217, 160, 0.1);
+    background: rgba(231, 198, 107, 0.1);
     border-color: var(--sand-gold);
-    transform: translateY(-2px);
+    
 }
 
 .project-image-upload-placeholder i {
@@ -915,14 +866,14 @@ header {
 }
 
 .project-image-upload-placeholder:hover i {
-    transform: scale(1.2);
+    
 }
 
 /* Report Section Styling */
 .card-subsection {
     margin-top: 2.5rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(242, 217, 160, 0.1);
+    border-top: 1px solid rgba(231, 198, 107, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -933,7 +884,7 @@ header {
     color: var(--sand-gold);
     font-size: 1.1rem;
     font-weight: 700;
-    text-transform: uppercase;
+    text-
     letter-spacing: 1.5px;
     margin-bottom: 1.5rem;
     text-align: center;
@@ -942,9 +893,9 @@ header {
 .preview-container {
     background: #ffffff;
     /* White background for document clarity */
-    border-radius: 12px;
+    border-radius: 24px;
     padding: 1.5rem;
-    border: 1px solid rgba(242, 217, 160, 0.2);
+    border: 1px solid rgba(231, 198, 107, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -958,7 +909,7 @@ header {
     width: 100%;
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 20px rgba(74, 0, 18, 0.15);
 }
 
 .preview-img-wrapper img {
@@ -975,7 +926,7 @@ header {
 }
 
 .preview-img-wrapper a:hover {
-    transform: scale(1.02);
+    
     filter: brightness(1.05);
 }
 
@@ -988,7 +939,7 @@ header {
 
 /* Secondary Preview (Screenshot) - Using same theme or darker */
 .preview-container.dark {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(74, 0, 18, 0.4);
     border-color: var(--sand-gold);
 }
 
@@ -1027,8 +978,8 @@ header {
 .card-subsection .preview-container {
     background: #ffffff;
     padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(74, 0, 18, 0.4);
 }
 
 .card-subsection .subsection-label {
@@ -1066,7 +1017,7 @@ header {
 .timeline-content {
     background: var(--bg-card);
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 16px;
     box-shadow: var(--shadow);
 }
 
@@ -1105,9 +1056,9 @@ header {
     background: var(--bg-card);
     /* Deep Wine */
     padding: 2.5rem;
-    border-radius: 8px;
+    border-radius: 16px;
     /* Sharper corners for professional look */
-    border: 1px solid rgba(242, 217, 160, 0.15);
+    border: 1px solid rgba(231, 198, 107, 0.15);
     /* Subtle gold border */
     box-shadow: var(--shadow);
     color: var(--text-card-main);
@@ -1132,10 +1083,10 @@ header {
     /* Reduced margin */
     padding: 1.2rem;
     /* Compact padding */
-    border-radius: 6px;
+    border-radius: 24px;
     background: transparent;
     /* Removed card background for individual items */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid rgba(74, 0, 18, 0.04);
     /* Divider style instead of card style */
     transition: var(--transition);
 }
@@ -1157,33 +1108,33 @@ header {
 /* Consolidated Energetic Hovers */
 .skill-category:hover,
 .project-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    
+    box-shadow: var(--shadow-hover);
     border-color: var(--sand-gold);
-    background: linear-gradient(135deg, var(--deep-wine), #8B1A33);
+    background: var(--dark-maroon);
 }
 
 /* Achievements & Leadership Containers Hover */
 .achievements:hover,
 .leadership:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    
+    box-shadow: 0 15px 35px rgba(74, 0, 18, 0.4);
     border-color: var(--sand-gold);
-    background: linear-gradient(135deg, var(--deep-wine), #4D020E);
+    background: var(--dark-maroon);
 }
 
 /* Individual Achievement/Leadership Items Hover */
 .icon-list li:hover {
-    transform: translateX(10px);
-    background: rgba(255, 210, 125, 0.1);
+    
+    background: rgba(231, 198, 107, 0.1);
     /* Brighter gold tint */
     border-bottom-color: var(--sand-gold);
 }
 
 /* Timeline Content Hover */
 .timeline-content:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    
+    box-shadow: var(--shadow-hover);
     border-left: 3px solid var(--sand-gold);
 }
 
@@ -1194,7 +1145,7 @@ header {
     .project-card:hover,
     .achievements:hover,
     .leadership:hover {
-        transform: none;
+        
         box-shadow: var(--shadow);
     }
 }
@@ -1255,7 +1206,7 @@ header {
     color: var(--text-card-head);
     margin-bottom: 1.5rem;
     font-size: 1.4rem;
-    border-bottom: 1px solid rgba(242, 217, 160, 0.1);
+    border-bottom: 1px solid rgba(231, 198, 107, 0.1);
     padding-bottom: 0.5rem;
 }
 
@@ -1291,7 +1242,7 @@ header {
     font-weight: 700;
     color: var(--champagne-beige);
     /* user requested light color instead of dark */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 2px rgba(74, 0, 18, 0.2);
     /* Added subtle shadow for readability on gold */
 }
 
@@ -1306,7 +1257,7 @@ header {
     color: var(--sand-gold);
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
-    border: 1px solid rgba(242, 217, 160, 0.3);
+    border: 1px solid rgba(231, 198, 107, 0.3);
     box-shadow: none;
 }
 
@@ -1318,7 +1269,7 @@ header {
     background: var(--bg-card);
     /* Deep Wine */
     padding: 3rem;
-    border-radius: 15px;
+    border-radius: 28px;
     box-shadow: var(--shadow);
 }
 
@@ -1395,10 +1346,10 @@ header {
 }
 
 .info-item:hover i {
-    transform: scale(1.2);
+    
     color: var(--champagne-beige);
     border-color: var(--sand-gold);
-    text-shadow: 0 0 15px rgba(255, 210, 125, 0.6);
+    text-shadow: 0 0 15px rgba(231, 198, 107, 0.6);
 }
 
 /* Social Links Icons */
@@ -1409,13 +1360,13 @@ header {
 
 .social-links a:hover i {
     color: var(--champagne-beige);
-    transform: scale(1.25) rotate(5deg);
+    
 }
 
 .contact-form input,
 .contact-form textarea {
     padding: 1.2rem;
-    border: 1px solid rgba(242, 217, 160, 0.2);
+    border: 1px solid rgba(231, 198, 107, 0.2);
     border-radius: 4px;
     font-size: 1rem;
     background: rgba(255, 255, 255, 0.05);
@@ -1428,17 +1379,17 @@ header {
 .contact-form textarea:focus {
     border-color: var(--sand-gold);
     outline: none;
-    box-shadow: 0 0 0 4px rgba(242, 217, 160, 0.1);
+    box-shadow: 0 0 0 4px rgba(231, 198, 107, 0.1);
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-    color: rgba(242, 217, 160, 0.5);
+    color: rgba(231, 198, 107, 0.5);
 }
 
 /* Footer */
 footer {
-    background: #250205;
+    background: var(--dark-maroon);
     /* Blackish-Wine for footer */
     color: var(--sand-gold);
     padding: 3rem;
@@ -1470,14 +1421,14 @@ footer {
         transition: all 0.4s ease-in-out;
         opacity: 0;
         visibility: hidden;
-        transform: translateY(-10px);
+        
     }
 
     .nav-links.active {
         display: flex;
         opacity: 1;
         visibility: visible;
-        transform: translateY(0);
+        
     }
 
     .hero {
@@ -1496,23 +1447,23 @@ footer {
 /* Professional Scroll Animations */
 .reveal {
     opacity: 0;
-    transform: translateY(25px);
+    
     transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
     will-change: opacity, transform;
 }
 
 /* Timeline specific slide-ins */
 .timeline-item.reveal:nth-child(odd) {
-    transform: translateX(-30px);
+    
 }
 
 .timeline-item.reveal:nth-child(even) {
-    transform: translateX(30px);
+    
 }
 
 .reveal.visible {
     opacity: 1;
-    transform: translate(0, 0);
+    
 }
 
 /* Stagger delays for grid items and lists */
@@ -1550,7 +1501,7 @@ footer {
     .reveal {
         transition: none;
         opacity: 1;
-        transform: none;
+        
     }
 
     .progress .bar {
@@ -1568,14 +1519,14 @@ footer {
 
 .action-btn {
     padding: 0.6rem 1.2rem;
-    border-radius: 6px;
+    border-radius: 24px;
     font-size: 0.85rem;
     font-weight: 600;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     transition: var(--transition);
-    text-transform: none;
+    text-
     letter-spacing: 0.3px;
     flex: 1;
     justify-content: center;
@@ -1584,7 +1535,7 @@ footer {
 
 .action-btn.primary {
     background: var(--burgundy);
-    color: #fff;
+    color: #FFF;
     border: 1.5px solid var(--burgundy);
 }
 
@@ -1592,8 +1543,8 @@ footer {
     background: var(--sand-gold);
     border-color: var(--sand-gold);
     color: var(--deep-wine);
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(255, 210, 125, 0.4);
+    
+    box-shadow: 0 10px 25px rgba(231, 198, 107, 0.4);
 }
 
 .action-btn.secondary {
@@ -1603,9 +1554,9 @@ footer {
 }
 
 .action-btn.secondary:hover {
-    background: rgba(242, 217, 160, 0.1);
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background: rgba(231, 198, 107, 0.1);
+    
+    box-shadow: var(--shadow-hover);
 }
 
 .assignment-actions i {
@@ -1622,7 +1573,7 @@ footer {
 /* Featured Project Section - NeedleSense */
 .featured-project-section {
     position: relative;
-    background: linear-gradient(135deg, rgba(250, 243, 224, 0.9), rgba(255, 210, 125, 0.2));
+    background-color: var(--bg-body);
 }
 
 .featured-project-section::before {
@@ -1630,26 +1581,26 @@ footer {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     /* very light textile weave texture */
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(139, 26, 51, 0.03) 2px, rgba(139, 26, 51, 0.03) 4px);
-    pointer-events: none;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(231, 198, 107, 0.03) 2px, rgba(231, 198, 107, 0.03) 4px);
+    
     opacity: 0.5;
 }
 
 .featured-project-card {
     background: linear-gradient(145deg, var(--deep-wine), var(--dark-maroon));
     border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(109, 0, 29, 0.2);
+    box-shadow: 0 20px 60px rgba(107, 0, 27, 0.2);
     display: flex;
     overflow: hidden;
     position: relative;
-    border: 1px solid rgba(255, 210, 125, 0.2);
+    border: 1px solid rgba(231, 198, 107, 0.2);
     align-items: stretch;
     transition: var(--transition-slow);
 }
 
 .featured-project-card:hover {
-    box-shadow: 0 25px 70px rgba(109, 0, 29, 0.3), 0 0 30px rgba(255, 210, 125, 0.1);
-    transform: translateY(-5px);
+    box-shadow: 0 25px 70px rgba(107, 0, 27, 0.3), 0 0 30px rgba(231, 198, 107, 0.1);
+    
 }
 
 .featured-content {
@@ -1672,11 +1623,11 @@ footer {
     font-weight: 800;
     margin-bottom: 0.5rem;
     letter-spacing: -0.5px;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    text-shadow: 0 4px 10px rgba(74, 0, 18, 0.3);
 }
 
 .featured-subtitle {
-    color: #FFF8E7;
+    color: #C3E7F1;
     font-size: 1.2rem;
     font-weight: 500;
     opacity: 0.9;
@@ -1701,9 +1652,9 @@ footer {
 }
 
 .featured-tags .tag {
-    background: rgba(255, 210, 125, 0.1);
+    background: rgba(231, 198, 107, 0.1);
     color: var(--sand-gold);
-    border: 1px solid rgba(255, 210, 125, 0.3);
+    border: 1px solid rgba(231, 198, 107, 0.3);
     padding: 0.5rem 1rem;
     border-radius: 50px;
     font-size: 0.85rem;
@@ -1713,8 +1664,8 @@ footer {
 }
 
 .featured-tags .tag:hover {
-    background: rgba(255, 210, 125, 0.2);
-    transform: translateY(-2px);
+    background: rgba(231, 198, 107, 0.2);
+    
 }
 
 .featured-actions {
@@ -1730,12 +1681,12 @@ footer {
 .featured-actions .btn.primary {
     background: var(--sand-gold);
     color: var(--deep-wine);
-    box-shadow: 0 6px 20px rgba(255, 210, 125, 0.3);
+    box-shadow: 0 6px 15px rgba(74, 0, 18, 0.2);
 }
 
 .featured-actions .btn.primary:hover {
-    background: #FFF;
-    transform: translateY(-5px) scale(1.05);
+    background: var(--dark-maroon);
+    
     box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
 }
 
@@ -1748,7 +1699,7 @@ footer {
 .featured-actions .btn.secondary:hover {
     background: var(--sand-gold);
     color: var(--deep-wine);
-    transform: translateY(-5px) scale(1.05);
+    
 }
 
 .featured-image-container {
@@ -1756,7 +1707,7 @@ footer {
     position: relative;
     overflow: hidden;
     min-height: 100%;
-    background: rgba(0,0,0,0.2);
+    background: rgba(74, 0, 18, 0.2);
     display: flex;
 }
 
@@ -1768,7 +1719,7 @@ footer {
 }
 
 .featured-project-card:hover .featured-image {
-    transform: scale(1.05);
+    
 }
 
 .featured-image-placeholder {
@@ -1780,10 +1731,10 @@ footer {
     align-items: center;
     justify-content: center;
     color: var(--sand-gold);
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(74, 0, 18, 0.2);
     font-size: 1.2rem;
     gap: 1rem;
-    border-left: 1px solid rgba(255, 210, 125, 0.1);
+    border-left: 1px solid rgba(231, 198, 107, 0.1);
 }
 
 .featured-image-placeholder i {
@@ -1807,7 +1758,7 @@ footer {
     .featured-image-placeholder {
         min-height: 300px;
         border-left: none;
-        border-top: 1px solid rgba(255, 210, 125, 0.1);
+        border-top: 1px solid rgba(231, 198, 107, 0.1);
     }
 }
 
@@ -1817,7 +1768,7 @@ footer {
 
 .workflow-page {
     background-color: var(--champagne-beige);
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(139, 26, 51, 0.03) 2px, rgba(139, 26, 51, 0.03) 4px);
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(231, 198, 107, 0.03) 2px, rgba(231, 198, 107, 0.03) 4px);
 }
 
 .workflow-hero {
@@ -1838,7 +1789,7 @@ footer {
     font-weight: 800;
     margin-bottom: 1rem;
     letter-spacing: -0.5px;
-    text-shadow: 0 4px 12px rgba(139, 26, 51, 0.1);
+    text-shadow: none;
 }
 
 .workflow-subtitle {
@@ -1863,7 +1814,7 @@ footer {
     content: '';
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    
     width: 8px;
     height: 8px;
     background: var(--sand-gold);
@@ -1885,15 +1836,15 @@ footer {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--shadow);
-    border: 1px solid rgba(255, 210, 125, 0.15);
+    border: 1px solid rgba(231, 198, 107, 0.15);
     transition: var(--transition-slow);
     position: relative;
 }
 
 .workflow-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 60px rgba(109, 0, 29, 0.25), 0 0 20px rgba(255, 210, 125, 0.1);
-    border-color: rgba(255, 210, 125, 0.4);
+    
+    box-shadow: 0 25px 60px rgba(107, 0, 27, 0.25), 0 0 20px rgba(231, 198, 107, 0.1);
+    border-color: rgba(231, 198, 107, 0.4);
 }
 
 .workflow-image-container {
@@ -1901,14 +1852,14 @@ footer {
     min-height: 350px;
     position: relative;
     overflow: hidden;
-    border-right: 1px solid rgba(255, 210, 125, 0.1);
+    border-right: 1px solid rgba(231, 198, 107, 0.1);
 }
 
 .workflow-image-placeholder {
     width: 100%;
     height: 100%;
     min-height: 100%;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(74, 0, 18, 0.25);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1931,7 +1882,7 @@ footer {
 }
 
 .workflow-card:hover .workflow-image-placeholder {
-    transform: scale(1.05);
+    
 }
 
 .workflow-card-content {
@@ -1985,7 +1936,7 @@ footer {
 
 .workflow-card:nth-child(even) .workflow-image-container {
     border-right: none;
-    border-left: 1px solid rgba(255, 210, 125, 0.1);
+    border-left: 1px solid rgba(231, 198, 107, 0.1);
 }
 
 @media (max-width: 992px) {
@@ -1997,7 +1948,7 @@ footer {
         min-height: 250px;
         border-right: none !important;
         border-left: none !important;
-        border-bottom: 1px solid rgba(255, 210, 125, 0.1);
+        border-bottom: 1px solid rgba(231, 198, 107, 0.1);
     }
     
     .workflow-card-content {
@@ -2007,4 +1958,128 @@ footer {
     .workflow-title {
         font-size: 2.5rem;
     }
-}
+}
+
+/* Certificate Lightbox Modal */
+.cert-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(74, 0, 18, 0.85); /* Deep dark maroon tint */
+    
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cert-modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.cert-modal-content {
+    position: relative;
+    background: var(--bg-card);
+    margin: auto;
+    padding: 2rem;
+    border: 1px solid var(--sand-gold);
+    border-radius: 24px;
+    box-shadow: 0 25px 60px rgba(74, 0, 18, 0.6);
+    max-width: 90%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    
+    transition: transform 0.3s ease;
+}
+
+.cert-modal.show .cert-modal-content {
+    
+}
+
+.cert-close-btn {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: var(--sand-gold);
+    color: var(--deep-wine);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(74, 0, 18, 0.3);
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.cert-close-btn:hover {
+    background: #FFF;
+    
+}
+
+#cert-modal-img {
+    max-width: 100%;
+    max-height: calc(90vh - 100px);
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(74, 0, 18, 0.2);
+}
+
+.cert-modal-caption {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: var(--sand-gold);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+
+.view-cert-btn {
+    background: var(--burgundy) !important;
+    color: var(--champagne-beige) !important;
+    border: 1px solid var(--sand-gold) !important;
+}
+.view-cert-btn:hover {
+    background: var(--dark-maroon) !important;
+    border-color: #FFF !important;
+    color: #FFF !important;
+}
+
+.nav-links a {
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #F6EBDD;
+    letter-spacing: 0.3px;
+}
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: rgba(231, 198, 107, 0.7);
+    transition: width 0.3s ease;
+}
+.nav-links a:hover {
+    color: #FFFFFF;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
